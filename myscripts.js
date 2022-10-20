@@ -4,19 +4,25 @@
 const options = ["rock", "paper", "scissors"];
 var getComputerChoice = options[Math.floor(Math.random()*options.length)];
 const computerSelection = getComputerChoice;
-const playerSelection = "paper";
+
+let playerSelection = "scissors";
+
 
 //If statement for rock>scissors, paper>rock and scissors>paper
 
 function playRound(playerSelection, computerSelection) {
     if ((playerSelection == "scissors" && computerSelection == "rock") || (playerSelection == "paper" && computerSelection == "scissors") || (playerSelection == "rock" && computerSelection == "paper")) {
-        console.log('You lose');
+        return 'You lose'
     } else if ((playerSelection == "scissors" && computerSelection == "paper") || (playerSelection == "paper" && computerSelection == "rock") || (playerSelection == "rock" && computerSelection == "scissors")) {
-        console.log('You win');
+        return 'You win';
     } else 
-        console.log('Tie');
+        return 'Tie';
 }
 
 console.log(playRound(playerSelection, computerSelection));
 console.log(computerSelection);
-console.log(playerSelection);
+
+//New function called game that plays 5 games and returns 
+//the winner of all 5 games and keeps score
+
+//Same as number game, using for loops (let i=0; i < 5; i++)
