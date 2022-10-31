@@ -1,12 +1,12 @@
-//Computer Choices//
+//Returns a Computer Choice//
 const options = ["rock", "paper", "scissors"];
 
 function getComputerChoice() {
-    let computerChoice = options[Math.floor(Math.random()*options.length)];
-    return computerChoice
+    let result = options[Math.floor(Math.random()*options.length)];
+    return result
 }
 
-//Returns selections and runs game//
+//Users Selection and Runs game on click//
 var playerSelection;
 function choose(choice) {
     playerSelection = choice;
@@ -16,14 +16,15 @@ function test(click) {
     console.log(playerSelection);
 }
 
+//
 
 
 //References to HTML//
-const rock = document.querySelector('.rock');
-const paper = document.querySelector('.paper');
-const scissors = document.querySelector('.scissors')
 const scoreComputer = document.querySelector('.scoreComputer');
 const scorePlayer = document.querySelector('.scorePlayer');
+const selectionComputer = document.querySelector('.selectionComputer');
+const selectionPlayer = document.querySelector('.selectionPlayer');
+const games = document.querySelector('.games');
 
 //Faces the playerSelection against the random computer choice between rock, paper and scissors//
 function playRound(playerSelection, computerChoice) {
@@ -61,13 +62,19 @@ function playRound(playerSelection, computerChoice) {
 return log
 }
 
+function createParagWithText(text) {
+    const p = document.createElement('p');
+    p.textContent = text;
+  
+    return p;
+  }
+
 //Adds scores to computer and player based on who won the match//
 let playerScore = 0;
 let computerScore = 0;
 
 function game() {
     let computerChoice = getComputerChoice();
-    console.log(computerChoice);
     let roundResult = playRound(playerSelection, computerChoice)
 
     if (roundResult.search('You Win!') > -1) {
@@ -78,13 +85,14 @@ function game() {
 
     scorePlayer.textContent = playerScore;
     scoreComputer.textContent = computerScore;
+    games.textContent = roundResult
 
     if (playerScore >=5 && computerScore <5) {
-        alert('Games over You Win')
-
+        games.textContent = 'Games over. You Win!';
+        document.getElementById('start').disabled = true;
     }else if (computerScore >=5 && playerScore <5){
-        alert('Games over You Lose')
+        games.textContent = 'Games over. You Lose!';
+        document.getElementById('start').disabled = true;
     }
 
 }
-console.log(game())
